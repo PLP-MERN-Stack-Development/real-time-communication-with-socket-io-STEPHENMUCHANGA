@@ -1,77 +1,59 @@
-# Real-Time Chat Application with Socket.io
+# Real-Time Chat Application (Socket.io) - Enhanced
 
-This assignment focuses on building a real-time chat application using Socket.io, implementing bidirectional communication between clients and server.
+This repository contains a student project implementing a real-time chat application using Socket.io, Node.js (Express), React (Vite), and MongoDB (Mongoose). Authentication uses JWT (JSON Web Tokens).
 
-## Assignment Overview
+## Structure
+- `server/` - Express + Socket.io server, MongoDB models, auth endpoints.
+- `client/` - React + Vite front-end with JWT login/register and socket auth.
+- `DEMO_VIDEO_SCRIPT.md` - Short script to make a demo video.
+- `SAMPLE_COMMIT_HISTORY.md` - Suggested commit messages for GitHub Classroom.
+- `package.json` - Root script to run both client and server concurrently.
 
-You will build a chat application with the following features:
-1. Real-time messaging using Socket.io
-2. User authentication and presence
-3. Multiple chat rooms or private messaging
-4. Real-time notifications
-5. Advanced features like typing indicators and read receipts
+## New features added
+- JWT authentication (register/login endpoints) stored as token in client localStorage
+- Socket.io authentication via token handshake
+- MongoDB persistence for users and messages (mongoose)
+- Read receipts persisted to DB
+- Message pagination using DB skip/limit
+- Root `npm run dev` to run client and server concurrently (requires `concurrently`)
 
-## Project Structure
+## Setup (local)
+1. Install Node.js v18+
+2. Run a MongoDB instance locally or provide a connection string.
 
-```
-socketio-chat/
-├── client/                 # React front-end
-│   ├── public/             # Static files
-│   ├── src/                # React source code
-│   │   ├── components/     # UI components
-│   │   ├── context/        # React context providers
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── pages/          # Page components
-│   │   ├── socket/         # Socket.io client setup
-│   │   └── App.jsx         # Main application component
-│   └── package.json        # Client dependencies
-├── server/                 # Node.js back-end
-│   ├── config/             # Configuration files
-│   ├── controllers/        # Socket event handlers
-│   ├── models/             # Data models
-│   ├── socket/             # Socket.io server setup
-│   ├── utils/              # Utility functions
-│   ├── server.js           # Main server file
-│   └── package.json        # Server dependencies
-└── README.md               # Project documentation
+### Server
+```bash
+cd server
+cp .env.example .env
+# edit .env to set MONGO_URI and JWT_SECRET
+npm install
+npm run dev
 ```
 
-## Getting Started
+### Client
+```bash
+cd client
+npm install
+npm run dev
+```
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week5-Assignment.md` file
-4. Complete the tasks outlined in the assignment
+### Or from repo root (runs both)
+```bash
+npm install
+# installs dev deps like concurrently
+npm run dev
+```
 
-## Files Included
+Client expects `VITE_SERVER_URL` in `client/.env` (defaults to http://localhost:3000).
 
-- `Week5-Assignment.md`: Detailed assignment instructions
-- Starter code for both client and server:
-  - Basic project structure
-  - Socket.io configuration templates
-  - Sample components for the chat interface
+## Important notes
+- This is still a demo/skeleton. For production: secure JWT storage, refresh tokens, SSL, rate limiting, validation, CSP, and use object storage for files.
+- If you want me to create commits locally and prepare the repo for GitHub (but not push), I can produce a `.patch` of suggested commits or generate a sequence of `git` commands to run locally.
 
-## Requirements
+## Submission tips
+- Add screenshots/GIFs into `/client/assets` and link them in README.
+- Provide deployed URLs if you host - include them in README for grading.
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Modern web browser
-- Basic understanding of React and Express
+## Application preview
+![Chat App Screenshot] (./client/src/screenshot.png)
 
-## Submission
-
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
-
-1. Complete both the client and server portions of the application
-2. Implement the core chat functionality
-3. Add at least 3 advanced features
-4. Document your setup process and features in the README.md
-5. Include screenshots or GIFs of your working application
-6. Optional: Deploy your application and add the URLs to your README.md
-
-## Resources
-
-- [Socket.io Documentation](https://socket.io/docs/v4/)
-- [React Documentation](https://react.dev/)
-- [Express.js Documentation](https://expressjs.com/)
-- [Building a Chat Application with Socket.io](https://socket.io/get-started/chat) 
